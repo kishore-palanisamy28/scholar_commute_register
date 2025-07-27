@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSN Face Collector</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js"></script>
+    <style>
+      /* your existing styles remain unchanged */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background: #f4f6f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      header img {
+        width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 26px;
+        color: #0a3d62;
+      }
+
+      form {
+        background: white;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      form label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
+
+      form input,
+      form select,
+      form button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      form button {
+        background-color: #0a3d62;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      form button:hover {
+        background-color: #1e6091;
+      }
+
+      video {
+        display: none;
+        border: 2px solid #0a3d62;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        max-width: 90%;
+        margin-top: 20px;
+      }
+
+      footer {
+        margin-top: 30px;
+        font-size: 14px;
+        color: #666;
+      }
+    </style>
+    <script src="/static/script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FSri_Sivasubramaniya_Nadar_College_of_Engineering&psig=AOvVaw1P3yuQ965k_Hih69dfkPU_&ust=1745451336542000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOjGm4vn7IwDFQAAAAAdAAAAABAQ"
+        alt="SSN College Logo"
+      />
+      <h1>SSN Face Collector</h1>
+    </header>
+
+    <form id="infoForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="email">SSN Email:</label>
+      <input
+        type="email"
+        id="email"
+        required
+        placeholder="you@ssn.edu.in"
+        pattern=".+@(ssn|snu)\.edu\.in"
+        title="Must be an SSN email"
+      />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required max="2020-12-31" />
+
+      <label for="role">Role:</label>
+      <select id="role" required>
+        <option value="STUDENT">Student</option>
+        <option value="TEACHER">Teacher</option>
+      </select>
+
+      <label for="busStop">Bus Stop:</label>
+      <select id="busStop" required>
+        <option value="">Loading stops...</option>
+      </select>
+      <p
+        id="sampleCounter"
+        style="text-align: center; font-weight: bold; display: none"
+      >
+        Samples Collected: <span id="sampleCount">0</span>
+      </p>
+      <button type="submit">Start Face Collection</button>
+    </form>
+
+    <video id="video" width="640" height="480" autoplay></video>
+
+    <footer>
+      &copy; 2025 SSN College of Engineering. All rights reserved.
+    </footer>
+    <script src="/static/index.js" defer></script>
+  </body>
+</html>
